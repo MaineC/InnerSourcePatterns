@@ -1,0 +1,9 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: InnerSourcePatterns
+  annotations:
+    github.com/project-slug: mainec/InnerSourcePatterns
+spec:
+  type: other
+  lifecycle: unknown
