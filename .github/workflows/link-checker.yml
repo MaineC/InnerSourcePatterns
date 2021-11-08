@@ -1,0 +1,26 @@
+# from: https://github.com/marketplace/actions/link-checker
+# link checker used is 'liche': https://github.com/raviqqe/liche
+
+name: Link Check on Patterns and README
+
+on:
+  push:
+    branches:
+      - "main"
+  pull_request:
+  schedule:
+    # * is a special character in YAML so you have to quote this string
+    - cron:  '30 8 * * *'
+
+jobs:
+  linkChecker:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Link Checker
+      id: lc
+      uses: peter-evans/link-checker@v1
+      with:
+        args: -v -d . -x "http://creativecommons.org/licenses|https://isc-inviter.herokuapp.com|https://github.com/rcs/rcs-viewer/pull/81|fearlesschangepatterns.com|https://ulir.ul.ie/bitstream/handle/10344/4443/Stol_2014_inner.pdf" README.md patterns/ -r
+    - name: Fail if there were link errors
+      run: exit ${{ steps.lc.outputs.exit_code }}
