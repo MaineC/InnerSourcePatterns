@@ -1,5 +1,0 @@
-default: false # excludes all default markdownlint rules
-
-# Custom rules:
-PATTERN-TEMPLATE-RULE-001: true
-PATTERN-TEMPLATE-RULE-002: true
